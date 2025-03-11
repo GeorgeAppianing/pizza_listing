@@ -1,7 +1,16 @@
 function App() {
+  function Pizza() {
+    return (
+      <div>
+        <h2>I love pizza</h2>
+      </div>
+    );
+  }
   return (
     <>
-      <div></div>
+      <div>
+        <Pizza />
+      </div>
     </>
   );
 }
