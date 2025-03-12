@@ -42,27 +42,3 @@ const pizzaData = [
     soldOut: false,
   },
 ];
-
-function App() {
-  return (
-    <>
-      <div>
-        <h2>Hello React</h2>
-        <Pizza />
-      </div>
-    </>
-  );
-}
-
-function Pizza() {
-  return (
-    <div>
-      <h2 className="flex text-center">I love pizza</h2>
-      {pizzaData.map((pizza) => {
-        return <div key={pizza.name}>{pizza.name}</div>;
-      })}
-    </div>
-  );
-}
-
-export default App;
