@@ -45,23 +45,67 @@ const pizzaData = [
 
 function App() {
   return (
-    <>
-      <div>
-        <h2>Hello React</h2>
-        <Pizza />
-      </div>
-    </>
+    <div className="flex justify-center flex-col items-center mt-5 bg-yellow-50">
+      <Header />
+      <Pizza />
+      <Footer />
+    </div>
   );
 }
 
 function Pizza() {
   return (
-    <div>
-      <h2 className="flex text-center">I love pizza</h2>
-      {pizzaData.map((pizza) => {
-        return <div key={pizza.name}>{pizza.name}</div>;
-      })}
+    <>
+      <h2 className="my-5 font-medium underline">OUR MENU</h2>
+      <p className="text-sm">
+        Authentic Italian cuisine {pizzaData.length} creative dishes to choose
+        from. All from our store oven, all organic, all delicious
+      </p>
+
+      <Menu />
+    </>
+  );
+}
+
+function Header() {
+  return <h2 className="text-yellow-200 font-sans text-5xl">Fast Pizza CO.</h2>;
+}
+function Menu() {
+  return (
+    <div className="grid grid-cols-2 gap-2 w-3/4 mt-4">
+      {pizzaData.map((pizza) => (
+        <div key={pizza.name} className="flex px-2">
+          <img src="../assests/pizzas" alt="pizza image" className="border" />
+          <div className="p-4">
+            <h2>{pizza.name}</h2>
+            <p className="text-sm text-gray-400">{pizza.ingredients}</p>
+            <p
+              className={`p-4 ${
+                pizza.soldOut === true ? "text-red-500 font-bold" : null
+              }`}
+            >
+              {pizza.soldOut === true ? "SOLD OUT" : pizza.price}
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
+  );
+}
+function Footer() {
+  const hour = new Date().getHours();
+  const openHour = 9;
+  const closedHour = 22;
+  const isOpen = hour >= openHour && hour <= closedHour;
+
+  return (
+    <footer>
+      {isOpen ? (
+        <p>We're currently opened</p>
+      ) : (
+        <p>Sorry we're currently closed, we will open at {openHour}am</p>
+      )}
+    </footer>
   );
 }
 
