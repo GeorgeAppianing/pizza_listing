@@ -73,25 +73,13 @@ function Header() {
 function Menu() {
   return (
     <div className="grid grid-cols-2 gap-2 w-3/4 mt-4">
-      {pizzaData.map((pizza) => (
-        <div key={pizza.name} className="flex px-2">
-          <img src="../assests/pizzas" alt="pizza image" className="border" />
-          <div className="p-4">
-            <h2>{pizza.name}</h2>
-            <p className="text-sm text-gray-400">{pizza.ingredients}</p>
-            <p
-              className={`p-4 ${
-                pizza.soldOut === true ? "text-red-500 font-bold" : null
-              }`}
-            >
-              {pizza.soldOut === true ? "SOLD OUT" : pizza.price}
-            </p>
-          </div>
-        </div>
-      ))}
+      <ul>
+        <Pizza />
+      </ul>
     </div>
   );
 }
+
 function Footer() {
   const hour = new Date().getHours();
   const openHour = 9;
@@ -99,9 +87,12 @@ function Footer() {
   const isOpen = hour >= openHour && hour <= closedHour;
 
   return (
-    <footer>
+    <footer className="flex justify-center items-center">
       {isOpen ? (
-        <p>We're currently opened</p>
+        <div className="flex flex-col justify-center items-center">
+          <p>We're currently opened</p>
+          <button className="bg-yellow-300 p-2 rounded">Order</button>
+        </div>
       ) : (
         <p>Sorry we're currently closed, we will open at {openHour}am</p>
       )}
