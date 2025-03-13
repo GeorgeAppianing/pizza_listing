@@ -53,6 +53,10 @@ function App() {
   );
 }
 
+function Header() {
+  return <h2 className="text-yellow-200 font-sans text-5xl">Fast Pizza CO.</h2>;
+}
+
 function Pizza() {
   return (
     <>
@@ -67,14 +71,18 @@ function Pizza() {
   );
 }
 
-function Header() {
-  return <h2 className="text-yellow-200 font-sans text-5xl">Fast Pizza CO.</h2>;
-}
 function Menu() {
   return (
-    <div className="grid grid-cols-2 gap-2 w-3/4 mt-4">
-      <ul>
-        <Pizza />
+    <div>
+      <ul className="grid grid-cols-2 gap-2 w-3/4 mt-4">
+        {pizzaData.map((pizza, index) => (
+          <li key={index}>
+            <img src={pizza.photoName} alt={pizza.name} />
+            <h3 className="font-bold">{pizza.name}</h3>
+            <p className="text-sm">{pizza.ingredients}</p>
+            <p className="font-medium">${pizza.price}</p>
+          </li>
+        ))}
       </ul>
     </div>
   );
