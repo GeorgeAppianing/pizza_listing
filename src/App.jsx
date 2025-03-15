@@ -73,22 +73,30 @@ function Pizza() {
 function Menu() {
   return (
     <div>
-      <ul className="grid grid-cols-2 gap-2 w-3/4 mt-4 justify-center items-center mx-auto">
-        {pizzaData.map((pizza, index) => (
-          <li key={index} className="flex p-4 ">
-            <img src={pizza.photoName} alt={pizza.name} className="border" />
-            <div className="px-2">
-              <h3 className="font-bold">{pizza.name}</h3>
-              <p className="text-sm">{pizza.ingredients}</p>
-              {pizza.soldOut === true ? (
-                "SOLD OUT"
-              ) : (
-                <p className="font-medium">${pizza.price}</p>
-              )}
-            </div>
-          </li>
-        ))}
-      </ul>
+      {pizzaData.length > 0 ? (
+        <ul className="grid grid-cols-2 gap-2 w-3/4 mt-4 justify-center items-center mx-auto">
+          {pizzaData.map((pizza, index) => (
+            <li key={index} className="flex p-4 ">
+              <img
+                src={pizza.photoName}
+                alt={pizza.name}
+                className="border h-20 w-20"
+              />
+              <div className="px-2">
+                <h3 className="font-bold">{pizza.name}</h3>
+                <p className="text-sm">{pizza.ingredients}</p>
+                {pizza.soldOut ? (
+                  "SOLD OUT"
+                ) : (
+                  <p className="font-medium">${pizza.price}</p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>We're still working on our menu please come later</p>
+      )}
     </div>
   );
 }
@@ -107,7 +115,10 @@ function Footer() {
           <button className="bg-yellow-300 p-2 rounded">Order</button>
         </div>
       ) : (
-        <p>Sorry we're currently closed, we will open at {openHour}am</p>
+        <p>
+          Sorry we're currently closed, we will open at {openHour}am and{" "}
+          {closedHour}pm
+        </p>
       )}
     </footer>
   );
