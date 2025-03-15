@@ -45,7 +45,7 @@ const pizzaData = [
 
 function App() {
   return (
-    <div className="flex justify-center flex-col items-center mt-5 bg-yellow-50">
+    <div className="flex justify-center flex-col items-center mt-5 bg-slate-100 ">
       <Header />
       <Pizza />
       <Footer />
@@ -54,7 +54,7 @@ function App() {
 }
 
 function Header() {
-  return <h2 className="text-yellow-200 font-sans text-5xl">Fast Pizza CO.</h2>;
+  return <h2 className="text-slate-950 font-sans text-5xl">Fast Pizza CO.</h2>;
 }
 
 function Pizza() {
@@ -65,7 +65,6 @@ function Pizza() {
         Authentic Italian cuisine {pizzaData.length} creative dishes to choose
         from. All from our store oven, all organic, all delicious
       </p>
-
       <Menu />
     </>
   );
@@ -74,13 +73,19 @@ function Pizza() {
 function Menu() {
   return (
     <div>
-      <ul className="grid grid-cols-2 gap-2 w-3/4 mt-4">
+      <ul className="grid grid-cols-2 gap-2 w-3/4 mt-4 justify-center items-center mx-auto">
         {pizzaData.map((pizza, index) => (
-          <li key={index}>
-            <img src={pizza.photoName} alt={pizza.name} />
-            <h3 className="font-bold">{pizza.name}</h3>
-            <p className="text-sm">{pizza.ingredients}</p>
-            <p className="font-medium">${pizza.price}</p>
+          <li key={index} className="flex p-4 ">
+            <img src={pizza.photoName} alt={pizza.name} className="border" />
+            <div className="px-2">
+              <h3 className="font-bold">{pizza.name}</h3>
+              <p className="text-sm">{pizza.ingredients}</p>
+              {pizza.soldOut === true ? (
+                "SOLD OUT"
+              ) : (
+                <p className="font-medium">${pizza.price}</p>
+              )}
+            </div>
           </li>
         ))}
       </ul>
